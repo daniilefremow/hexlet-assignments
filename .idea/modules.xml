@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/hexlet-assignments.iml" filepath="$PROJECT_DIR$/.idea/hexlet-assignments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/http-crud.main.iml" filepath="$PROJECT_DIR$/.idea/modules/http-crud.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/http-crud.test.iml" filepath="$PROJECT_DIR$/.idea/modules/http-crud.test.iml" />
     </modules>
   </component>
 </project>
