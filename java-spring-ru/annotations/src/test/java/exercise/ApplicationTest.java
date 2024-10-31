@@ -8,7 +8,6 @@ import java.io.PrintStream;
 
 class ApplicationTest {
 
-
     @Test
     public void testInspect() {
         Application.main(null);
