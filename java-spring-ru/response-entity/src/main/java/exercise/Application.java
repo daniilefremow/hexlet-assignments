@@ -29,7 +29,7 @@ public class Application {
     }
 
     // BEGIN
-    @GetMapping("/posts") // список всех постов
+    @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAll() {
         var result = posts.stream().toList();
 
