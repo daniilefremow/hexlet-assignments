@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
+
 @SpringBootApplication
 @RestController
 public class Application {
@@ -28,8 +31,7 @@ public class Application {
     // BEGIN
     @GetMapping("/posts") // список всех постов
     public ResponseEntity<List<Post>> getAll() {
-        var result = posts.stream()
-                .toList();
+        var result = posts.stream().toList();
 
         return ResponseEntity
                 .ok()
@@ -50,7 +52,7 @@ public class Application {
     public ResponseEntity<Post> create(@RequestBody Post post) {
         posts.add(post);
         return ResponseEntity
-                .created(URI.create(post.getId()))
+                .created(URI.create("/posts"))
                 .body(post);
     }
 
@@ -59,19 +61,17 @@ public class Application {
         var optionalPost = posts.stream()
                 .filter(p -> p.getId().equals(id))
                 .findFirst();
+        var status = NO_CONTENT;
         if (optionalPost.isPresent()) {
             var post = optionalPost.get();
             post.setId(updatedPost.getId());
             post.setTitle(updatedPost.getTitle());
             post.setBody(updatedPost.getBody());
-            return ResponseEntity
-                    .ok()
-                    .body(updatedPost);
-        } else {
-            return ResponseEntity
-                    .noContent()
-                    .build();
+            status = CREATED;
         }
+        return ResponseEntity
+                .status(status)
+                .body(updatedPost);
     }
     // END
 
