@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.OK;
 
 @SpringBootApplication
 @RestController
@@ -67,7 +67,7 @@ public class Application {
             post.setId(updatedPost.getId());
             post.setTitle(updatedPost.getTitle());
             post.setBody(updatedPost.getBody());
-            status = CREATED;
+            status = OK;
         }
         return ResponseEntity
                 .status(status)
