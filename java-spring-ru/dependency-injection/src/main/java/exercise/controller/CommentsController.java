@@ -38,25 +38,19 @@ public class CommentsController {
     @GetMapping("/{id}")
     public Comment findById(@PathVariable Long id) {
         return commentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Comment with id = " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found"));
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Comment post(@RequestBody Comment comment) {
-        var postId = comment.getPostId();
-        postRepository.findById(postId)
-                .orElseThrow(() -> new ResourceNotFoundException("Post with id = " + postId + " not found"));
         return commentRepository.save(comment);
     }
 
     @PutMapping("/{id}")
     public Comment update(@PathVariable Long id, @RequestBody Comment updatedComment) {
         commentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Comment with id = " + id + " not found"));
-        var postId = updatedComment.getPostId();
-        postRepository.findById(postId)
-                .orElseThrow(() -> new ResourceNotFoundException("Post with id = " + postId + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Comment with id " + id + " not found"));
         updatedComment.setId(id);
         return commentRepository.save(updatedComment);
     }
